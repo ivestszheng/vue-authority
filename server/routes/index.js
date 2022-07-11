@@ -1,14 +1,15 @@
 /*
  * @Descripttion: 
  * @Date: 2022-07-11 08:23:39
- * @LastEditTime: 2022-07-11 10:08:16
+ * @LastEditTime: 2022-07-11 10:31:17
  */
 const router = require('koa-router')()
 
 const users = require('../data/user')
 const routers = require('../data/router')
 
-router.post('/user_router_auth', async (ctx, next) => {
+// 实际上接口不能这样直接暴露出去，应当加中间件进行访问权限拦截
+router.post('/user_router_auth',async (ctx, next) => {
   const { uid } = ctx.request.body
 
   if(uid){

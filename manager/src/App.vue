@@ -17,10 +17,6 @@ export default {
     MHeader,
     SideBar,
     PageBoard
-  },
-  async mounted(){
-    const data = await getUserRouters(2)
-    console.log(data);
   }
 }
 </script>

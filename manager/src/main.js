@@ -6,6 +6,8 @@ import '@/assets/css/common.css'
 
 Vue.config.productionTip = false
 
+store.dispatch('setUserRouters')
+
 new Vue({
   router,
   store,
