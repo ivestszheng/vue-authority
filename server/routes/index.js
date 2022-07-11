@@ -1,19 +1,31 @@
+/*
+ * @Descripttion: 
+ * @Date: 2022-07-11 08:23:39
+ * @LastEditTime: 2022-07-11 10:08:16
+ */
 const router = require('koa-router')()
 
-router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
-})
+const users = require('../data/user')
+const routers = require('../data/router')
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
+router.post('/user_router_auth', async (ctx, next) => {
+  const { uid } = ctx.request.body
 
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
+  if(uid){
+    let authRouterInfo = []
+
+    const userInfo = users.filter(user => user.id == uid)[0]
+    userInfo.auth.map((rid)=>{
+      routers.map((router)=>{
+        if(router.id === rid){
+          authRouterInfo.push(router)
+        }
+      })
+    })
+    
+    ctx.body = authRouterInfo
   }
+  next()
 })
 
 module.exports = router

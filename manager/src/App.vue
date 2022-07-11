@@ -1,30 +1,31 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app">
+    <MHeader />
+    <SideBar />
+    <PageBoard />
+  </div>
 </template>
+<script>
+import MHeader from '@/components/Header'
+import SideBar from '@/components/SideBar'
+import PageBoard from '@/components/PageBoard'
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+import {getUserRouters} from '@/services'
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  components: {
+    MHeader,
+    SideBar,
+    PageBoard
+  },
+  async mounted(){
+    const data = await getUserRouters(2)
+    console.log(data);
   }
+}
+</script>
+<style>
+#app {
+  height: 100%;
 }
 </style>
