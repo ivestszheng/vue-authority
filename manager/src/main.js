@@ -2,11 +2,21 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import { generateRouter } from '@/libs/utils'
 import '@/assets/css/common.css'
 
-Vue.config.productionTip = false
+router.beforeEach(async (to, from, next) => {
+  if (!store.state.hasAuth) {
+    await store.dispatch('setUserRouters')
+    const newRoutes = generateRouter(store.state.userRouters)
+    router.addRoutes(newRoutes)
+    next({ path: to.path })
+  } else {
+    next()
+  }
+})
 
-store.dispatch('setUserRouters')
+Vue.config.productionTip = false
 
 new Vue({
   router,

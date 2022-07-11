@@ -1,7 +1,7 @@
 /*
  * @Descripttion: 
  * @Date: 2022-07-11 10:29:55
- * @LastEditTime: 2022-07-11 10:50:39
+ * @LastEditTime: 2022-07-11 11:04:10
  */
 
 // 扁平数组转树
@@ -33,6 +33,25 @@ function formatRouterTree(data){
     return parents
 }
 
+function generateRouter(userRouters){
+    const newRouters = userRouters.map((r)=>{
+        const routes = {
+            path: r.path,
+            name: r.name,
+            component: () => import(`@/views/${r.name}`)
+        }
+
+        if(r.children){
+            routes.children = generateRouter(r.children)
+        }
+
+        return routes
+    })
+
+    return newRouters
+}
+
 export {
-    formatRouterTree
+    formatRouterTree,
+    generateRouter
 }

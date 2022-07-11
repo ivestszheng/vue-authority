@@ -10,8 +10,6 @@ import MHeader from '@/components/Header'
 import SideBar from '@/components/SideBar'
 import PageBoard from '@/components/PageBoard'
 
-import {getUserRouters} from '@/services'
-
 export default {
   components: {
     MHeader,

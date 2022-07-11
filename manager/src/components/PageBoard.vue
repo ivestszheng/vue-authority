@@ -1,11 +1,10 @@
 <!--
  * @Descripttion: 
  * @Date: 2022-07-11 09:09:19
- * @LastEditTime: 2022-07-11 09:27:24
+ * @LastEditTime: 2022-07-11 11:28:31
 -->
 <template>
    <div class="page-board">
-      page-board
       <router-view />
    </div>
 </template>
